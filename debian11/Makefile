@@ -20,17 +20,17 @@ all: info/init_ok
 	dab install software-properties-common
 	dab install qemu-guest-agent
 	dab install htop
-	dab install cloud-init
 	dab install atop
 	dab install nano
 	dab install curl
 	dab install wget
-	
+
+#	dab install cloud-init	
 	# enable root login in cloud-init
-	sed -i 's/disable_root: [Tt]rue/disable_root: False/' ${BASEDIR}/etc/cloud/cloud.cfg ;
-	sed -i 's/disable_root: 1/disable_root: 0/' ${BASEDIR}/etc/cloud/cloud.cfg ; 
-	sed -i 's/lock_passwd: [Tt]rue/lock_passwd: False/' ${BASEDIR}/etc/cloud/cloud.cfg ; 
-	sed -i 's/lock_passwd: 1/lock_passwd: 0/' ${BASEDIR}/etc/cloud/cloud.cfg ;
+	sed -i 's/disable_root: [Tt]rue/disable_root: False/' ${BASEDIR}/etc/cloud/cloud.cfg||true
+	sed -i 's/disable_root: 1/disable_root: 0/' ${BASEDIR}/etc/cloud/cloud.cfg||true
+	sed -i 's/lock_passwd: [Tt]rue/lock_passwd: False/' ${BASEDIR}/etc/cloud/cloud.cfg||true 
+	sed -i 's/lock_passwd: 1/lock_passwd: 0/' ${BASEDIR}/etc/cloud/cloud.cfg||true
 
 	dab install vim
 	if [ -f "../files/.vimrc" ]; then cp ../files/.vimrc ${BASEDIR}/root/.vimrc; fi
