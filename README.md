@@ -28,8 +28,8 @@ Next customize the Makefile and dab.conf files in the template folders according
 
 * SSH root login is allowed with password. Check `files/ssh/sshd_config` if you want to have this changed.
 * `files/id_rsa` & `files/id_rsa.pub` must be created (see the next section) or root login must be allowed or a local user must be created (either SSH config or Makefile). If absent it will be skipped.
-* localtime is set to Europe/Berlin (Makefile)
-* locale is set to en_GB.UTF-8 (Makefile)
+* localtime is set to America/Detroit (Makefile)
+* locale is set to en_US.UTF-8 (Makefile)
 * Python3 & vim (Makefile)
 * Fixed IPs for several hosts (files/hosts).
 
@@ -51,15 +51,16 @@ Creating a new LXC template is quite easy. Just execute the following command (i
 
     make
 
-To clean up the directory execute the following command. Please note that this will also remove the LXC template file so you may want to move the template to another location first (see the next section).
-
-    make clean
-
-### Post-processing
-
 Usually the template will have a quite long file name. Since I always use minimal and 64bit templates I usually remove those parts from the file name. You however can choose any name you like. Once you are done with renaming the template move it to the Proxmox LXC template location so it can be used via the web console and CLI.
 
     mv debian-10.0-minimal_10.0_amd64.tar.gz /var/lib/vz/template/cache/debian-10.tar.gz
+
+
+### Post-processing
+
+To clean up the directory execute the following command. Please note that this will also remove the LXC template file so you may want to move the template to another location first (see the above section).
+
+    make clean
 
 Enjoy.
 
