@@ -6,11 +6,11 @@ all: info/init_ok
 	if [ -f "../files/sshd_config" ]; then cp ../files/sshd_config ${BASEDIR}/etc/ssh/sshd_config;  fi
 	if [ -f "../files/id_rsa.pub" ]; then mkdir -p ${BASEDIR}/root/.ssh; cp ../files/id_rsa.pub ${BASEDIR}/root/.ssh/authorized_keys; fi
 
-	echo "en_GB.UTF-8" > ${BASEDIR}/etc/locale
-	echo "en_GB.UTF-8 UTF-8" > ${BASEDIR}/etc/locale.gen
+	echo "en_US.UTF-8" > ${BASEDIR}/etc/locale
+	echo "en_US.UTF-8 UTF-8" > ${BASEDIR}/etc/locale.gen
 	dab exec dpkg-reconfigure -f noninteractive locales
 
-	dab exec echo "Europe/Berlin" > /etc/timezone
+	dab exec echo "America/Detroit" > /etc/timezone
 	dab exec cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 	dab exec dpkg-reconfigure -f noninteractive tzdata
 
