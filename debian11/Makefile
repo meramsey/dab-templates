@@ -1,21 +1,23 @@
 BASEDIR:=$(shell dab basedir)
 
 all: info/init_ok
-	dab bootstrap
-
-	if [ -f "../files/sshd_config" ]; then cp ../files/sshd_config ${BASEDIR}/etc/ssh/sshd_config;  fi
+	dab bootstrap --minimal
+	
+	if [ -f "../files/sshd_config" ]; then cp ../files/sshd_config ${BASEDIR}/etc/ssh/sshd_config; 	fi
 	if [ -f "../files/id_rsa.pub" ]; then mkdir -p ${BASEDIR}/root/.ssh; cp ../files/id_rsa.pub ${BASEDIR}/root/.ssh/authorized_keys; fi
 
 	echo "en_US.UTF-8" > ${BASEDIR}/etc/locale
 	echo "en_US.UTF-8 UTF-8" > ${BASEDIR}/etc/locale.gen
+	dab install locales
 	dab exec dpkg-reconfigure -f noninteractive locales
 
-	dab exec echo "America/Detroit" > /etc/timezone
+	echo "America/Detroit" > ${BASEDIR}/etc/timezone
 	dab exec cp /usr/share/zoneinfo/America/Detroit /etc/localtime
 	dab exec dpkg-reconfigure -f noninteractive tzdata
 
 	dab install ntpdate
 	dab install python3
+	dab install software-properties-common
 	dab install qemu-guest-agent
 	dab install htop
 	dab install cloud-init
@@ -23,13 +25,12 @@ all: info/init_ok
 	dab install nano
 	dab install curl
 	dab install wget
-
+	
 	# enable root login in cloud-init
 	sed -i 's/disable_root: [Tt]rue/disable_root: False/' ${BASEDIR}/etc/cloud/cloud.cfg ;
 	sed -i 's/disable_root: 1/disable_root: 0/' ${BASEDIR}/etc/cloud/cloud.cfg ; 
 	sed -i 's/lock_passwd: [Tt]rue/lock_passwd: False/' ${BASEDIR}/etc/cloud/cloud.cfg ; 
 	sed -i 's/lock_passwd: 1/lock_passwd: 0/' ${BASEDIR}/etc/cloud/cloud.cfg ;
-	
 
 	dab install vim
 	if [ -f "../files/.vimrc" ]; then cp ../files/.vimrc ${BASEDIR}/root/.vimrc; fi
@@ -57,4 +58,3 @@ clean:
 dist-clean:
 	dab dist-clean
 	rm -f *~
-
