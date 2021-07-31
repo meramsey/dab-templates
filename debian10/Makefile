@@ -20,7 +20,6 @@ all: info/init_ok
 	dab install software-properties-common
 	dab install qemu-guest-agent
 	dab install htop
-	dab install vim
 
 	dab install vim
 	if [ -f "../files/.vimrc" ]; then cp ../files/.vimrc ${BASEDIR}/root/.vimrc; fi
