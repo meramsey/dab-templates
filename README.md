@@ -19,7 +19,7 @@ In order to start creating custom templates one has to install DAB first. Please
 
 Once DAB is installed just clone the GIT repository to get the required files.
 
-    git https://github.com/meramsey/dab-templates.git
+    git clone https://github.com/meramsey/dab-templates.git
     cd dab-templates/...
 
 ### Make changes to the config files
