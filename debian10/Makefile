@@ -27,10 +27,10 @@ all: info/init_ok
 	dab install wget
 	
 	# enable root login in cloud-init
-	sed -e 's/disable_root: [Tt]rue/disable_root: False/' rootfs/etc/cloud/cloud.cfg ;
-	sed -e 's/disable_root: 1/disable_root: 0/' rootfs/etc/cloud/cloud.cfg ; 
-	sed -e 's/lock_passwd: [Tt]rue/lock_passwd: False/' rootfs/etc/cloud/cloud.cfg ; 
-	sed -e 's/lock_passwd: 1/lock_passwd: 0/' rootfs/etc/cloud/cloud.cfg ;
+	sed -e 's/disable_root: [Tt]rue/disable_root: False/' ${BASEDIR}/etc/cloud/cloud.cfg ;
+	sed -e 's/disable_root: 1/disable_root: 0/' ${BASEDIR}/etc/cloud/cloud.cfg ; 
+	sed -e 's/lock_passwd: [Tt]rue/lock_passwd: False/' ${BASEDIR}/etc/cloud/cloud.cfg ; 
+	sed -e 's/lock_passwd: 1/lock_passwd: 0/' ${BASEDIR}/etc/cloud/cloud.cfg ;
 
 	dab install vim
 	if [ -f "../files/.vimrc" ]; then cp ../files/.vimrc ${BASEDIR}/root/.vimrc; fi
