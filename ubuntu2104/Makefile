@@ -16,7 +16,6 @@ all: info/init_ok
 
 	dab install ntpdate
 	dab install python3
-	dab install qemu-guest-agent
 	dab install htop
 	dab install cloud-init
 	dab install atop

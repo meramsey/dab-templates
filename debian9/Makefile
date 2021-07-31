@@ -18,7 +18,6 @@ all: info/init_ok
 	dab install ntpdate
 	dab install python3
 	dab install software-properties-common
-	dab install qemu-guest-agent
 	dab install htop
 	dab install atop
 	dab install nano
