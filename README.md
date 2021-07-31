@@ -19,14 +19,14 @@ In order to start creating custom templates one has to install DAB first. Please
 
 Once DAB is installed just clone the GIT repository to get the required files.
 
-    git https://github.com/frieder/dab-templates.git
+    git https://github.com/meramsey/dab-templates.git
     cd dab-templates/...
 
 ### Make changes to the config files
 
 Next customize the Makefile and dab.conf files in the template folders according to your needs. While most of the stuff should be fine for most people you may want to take a closer look at the following configurations:
 
-* SSH root login is forbidden except with private key from a defined subnet. Check `files/ssh/sshd_config` if you want to have this changed.
+* SSH root login is allowed with password. Check `files/ssh/sshd_config` if you want to have this changed.
 * `files/id_rsa` & `files/id_rsa.pub` must be created (see the next section) or root login must be allowed or a local user must be created (either SSH config or Makefile). If absent it will be skipped.
 * localtime is set to Europe/Berlin (Makefile)
 * locale is set to en_GB.UTF-8 (Makefile)
